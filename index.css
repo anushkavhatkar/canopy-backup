@@ -90,6 +90,16 @@
   
   /* #endregion */
   
+/* #region ------------------------------------ SITWIDE BASICS ------------------------------------ */
+
+.main-body {
+  width: 90vw;
+  margin: 0 auto;
+  background-color: var(--light-white);
+}
+
+/* #endregion */
+
   /* #region ------------------------------------ TYPOGRAPHY ------------------------------------  */
   
   .header { 
@@ -130,7 +140,7 @@
     font-size: var(--body-text-size);
     }
     
-    /* #endregion */
+/* #endregion */
     
   
   
