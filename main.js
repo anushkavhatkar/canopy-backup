@@ -33,7 +33,7 @@ let keyText = document.querySelector('#key-text');
 
 let keyFlex = document.querySelector(".key-flex");
 
-let internalImagePath = "../canopy/assets/";
+let internalImagePath = "../canopy-backup/assets/";
 
 let aboutBtn = document.querySelector('#about');
 
@@ -1166,7 +1166,7 @@ function calcTotalNumbers(arr) {
 
     return totalLength;
 
-}
+}a
 
 const nativeTreesTotalNumber = calcTotalNumbers(allNativeArray);
 console.log(nativeTreesTotalNumber);

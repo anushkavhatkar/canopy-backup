@@ -422,11 +422,7 @@ span {
     justify-self: center;
 }
 
-.sub-filter {
-    
-    padding: 0 .5em;
 
-}
 
 .sub-filter:hover {
     /* background-color: var(--light-grey); */
