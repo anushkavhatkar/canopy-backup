@@ -451,6 +451,12 @@ span {
     
 } */
 
+#city-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 /* #endregion */
 
 

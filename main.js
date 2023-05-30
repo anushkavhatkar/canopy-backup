@@ -1543,17 +1543,7 @@ nonNativeFilterBtn.addEventListener("mouseover", function() {
 
 //#region 
 
-let greyBoxesArray = [];
-for (let g=0; g<1000; g++) {
-    let greyBox = document.createElement('div');
-    greyBox.style.backgroundColor = "#888888";
-    greyBox.classList.add("tiny-box");
-    greyBoxesArray.push(greyBox);
-}
 
-let reducedForestArray = [];
-
-let forestArray = [];
 
 
 
@@ -1580,7 +1570,6 @@ urbanViewBtn.addEventListener("click", function () {
 
     mainContainer.innerHTML = "";
 
-    mainContainer.style.gridTemplateColumns = "1 fr 1.35fr";
 
     forestDOM = "";
 
@@ -1596,66 +1585,130 @@ urbanViewBtn.addEventListener("click", function () {
     `;
 
 
-    forestDOM += `<div id="city-flex-grid">`;
+
+    let urbanContainer = document.createElement('div');
+    // forestDOM += urbanContainer.outerHTML;
 
 
-    function createForestKey (arr1, arr2) {
+    urbanContainer.id= "city-grid";
 
-        forestDOM += `<div id="forest-key">`;
+    console.log(urbanContainer);
 
-        forestDOM += `<p class="body-text">Native</p>`;
+
+
+    function createUrbanDOM(arr) {
+
+
+
+        let testWidth = 0.9*window.innerWidth;
+        let testHeight = 0.7*window.innerHeight;
+
+
+        var squareSize = testWidth/50;
+        var xBoxes = Math.floor(testWidth/squareSize);
+        var yBoxes = Math.floor(testWidth/squareSize);
+        var totalBoxes = xBoxes*yBoxes;
+
+        console.log(squareSize);
+        console.log(xBoxes);
+        console.log(yBoxes);
+        console.log(totalBoxes);
+
         
-        for (let i=0; i<arr1.length; i++) { 
-            forestDOM += `<div class="tiny-box" style="background-color:${arr1[i][i].spc_common}"></div>`;
-            forestDOM += `<div class="tiny-box" style="background-color:black"></div>`;
-             console.log(arr1[i][i].spc_common);
-            console.log(arr2[i][i].spc_common);
-            console.log(arr1);
+        
+
+        var urbanContWidth = xBoxes*squareSize;
+        var urbanContHeight = yBoxes*squareSize;
+
+        urbanContainer.style.width = urbanContWidth + "px";
+        urbanContainer.style.height = urbanContHeight + "px";
+
+
+        let greyBoxesArray = [];
+        let urbanTreesArray = [];
+
+        var greyBoxNumber = Math.floor(0.75*totalBoxes);
+        var urbanTreesNumber = Math.floor(0.25*totalBoxes);
+
+        console.log(greyBoxNumber, urbanTreesNumber);
+
+        for (let g=0; g<greyBoxNumber; g++) {
+        let greyBox = document.createElement('div');
+        greyBox.style.backgroundColor = `#888888`;
+        greyBox.style.width = squareSize + 'px';
+        greyBox.style.height = squareSize + 'px';
+
+        greyBoxesArray.push(greyBox);
         }
 
-        forestDOM += `<br><p class="body-text">Non-Native</p>`;
+        
 
-        for (let j=0; j<arr2.length; j++) { 
-            forestDOM += `<div class="tiny-box" style="background-color:black"></div>`;
-        }
-        forestDOM += `</div>`;
+        for (let i=0; i<arr.length; i++) {
+            // Percentage of species from dataset
+            let pValue = (arr[i].length/allTreesTotalNumber)*100;
+
+            for (let u=0; u< Math.floor((pValue*urbanTreesNumber)/100); u++) {
+                let urbanTree = document.createElement('div');
+                urbanTree.style.width = squareSize + "px";
+                urbanTree.style.height = squareSize + "px";
+                urbanTree.style.backgroundColor = `${arr[i][i].bg}`;
+
+                urbanTreesArray.push(urbanTree);
+
+            };
+        };
+
+        console.log(greyBoxesArray);
+        console.log(urbanTreesArray);
+
+        urbanTreesArray.push(...greyBoxesArray);
+        shuffleArray(urbanTreesArray);
+        
+
+
+        // sample black boxes creation
+        // for (var i = 0; i < xBoxes * yBoxes; i++) {
+
+            
+        //     var box = document.createElement('div');
+        //     box.className = 'city-box';
+        //     box.style.backgroundColor = 'black';
+        //     box.style.width = squareSize + 'px';
+        //     box.style.height = squareSize + 'px';
+        //     urbanContainer.appendChild(box);
+        //     divArray.forEach((div) => {
+        //         targetElement.appendChild(div);
+        //       });
+        // }
+
+          urbanTreesArray.forEach((div) => {
+            urbanContainer.appendChild(div);
+        });
+
+
 
     }
 
-    createForestKey(allNativeArray, allNonNativeArray);
-    
+    window.addEventListener('load', function() {
+        createUrbanDOM(allArray);
+      });
+
+    createUrbanDOM(allArray);
 
     
 
-
-
-
-
-
-    
     
 
-
-    mainContainer.appendChild(greyBoxesArray);
-
-    forestDOM += `<div id="forest-dom" class="tree-container">`
+    window.addEventListener('resize', function() {
+        createUrbanDOM(allArray);
+      });
 
     
-
-
-
-    forestDOM += `</div>`;
-
-
-
+mainContainer.appendChild(urbanContainer);
 
 
 
     
-    forestDOM += `</div>`;
-
-
-    mainContainer.innerHTML = forestDOM;
 
 
 
