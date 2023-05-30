@@ -25,9 +25,9 @@ let nonNativeFilterBtn = document.querySelector('#non-native-filter');
 
 let percentageFilterBtn = document.querySelector('#percentage-filter');
 
-let aTreeBtn = document.querySelector('#tree_btn');
+let speciesViewBtn = document.querySelector('#filters-1');
 
-let forestBtn = document.querySelector("#forest_btn");
+let urbanViewBtn = document.querySelector("#filters-2");
 
 let keyText = document.querySelector('#key-text');
 
@@ -196,7 +196,9 @@ let treeColorsArray = [ "#2ADB31", "#B3ED39", "#D5F21F", "#ACEB44", "#02E34F", "
 
 // #region URL CONSTRUCT
 
-const url = `https://data.cityofnewyork.us/resource/${DATASET_IDENTIFIER}.json?$$app_token=${APP_TOKEN}&$limit=${LIMIT}`;
+// const url = `https://data.cityofnewyork.us/resource/${DATASET_IDENTIFIER}.json?$$app_token=${APP_TOKEN}&$limit=${LIMIT}`;
+
+const url=`https://spicy-loving-supernova.glitch.me/canopy.json`;
 
 
 console.log(`Fetching url - ${url}`);
@@ -1166,7 +1168,7 @@ function calcTotalNumbers(arr) {
 
     return totalLength;
 
-}a
+}
 
 const nativeTreesTotalNumber = calcTotalNumbers(allNativeArray);
 console.log(nativeTreesTotalNumber);
@@ -1562,7 +1564,19 @@ let forestArray = [];
 
 // #region MAIN FILTERS  --------------------------------------
 
-forestBtn.addEventListener("click", function () {
+function shuffleArray(arr) {
+    var j, x, index;
+    for (index = arr.length - 1; index > 0; index--) {
+        j = Math.floor(Math.random() * (index + 1));
+        x = arr[index];
+        arr[index] = arr[j];
+        arr[j] = x;
+    }
+    return arr;
+}
+
+
+urbanViewBtn.addEventListener("click", function () {
 
     mainContainer.innerHTML = "";
 
@@ -1575,25 +1589,11 @@ forestBtn.addEventListener("click", function () {
     
     <div id="key-text">Now Contextualizing ${allTreesTotalNumber} New York City trees</div>
         
-        <div class="body-text sub-filters-flex" id="subfilters-two">
-
-            <div id="percentage-view" class="sub-filter">Percentage View </div>
-            <div id="canopy-view" class="sub-filter"> Canopy View</div> 
-
-
-        </div>
-
         <div id="key">
             By Percentage
         </div>
     
-
-    
-    
     `;
-
-
-
 
 
     forestDOM += `<div id="city-flex-grid">`;
@@ -1601,18 +1601,16 @@ forestBtn.addEventListener("click", function () {
 
     function createForestKey (arr1, arr2) {
 
-
-
         forestDOM += `<div id="forest-key">`;
 
         forestDOM += `<p class="body-text">Native</p>`;
         
         for (let i=0; i<arr1.length; i++) { 
-            // forestDOM += `<div class="tiny-box" style="background-color:${arr1[i][i].spc_common}"></div>`;
+            forestDOM += `<div class="tiny-box" style="background-color:${arr1[i][i].spc_common}"></div>`;
             forestDOM += `<div class="tiny-box" style="background-color:black"></div>`;
-            // console.log(arr1[i][i].spc_common);
-            // console.log(arr2[i][i].spc_common);
-            // console.log(arr1);
+             console.log(arr1[i][i].spc_common);
+            console.log(arr2[i][i].spc_common);
+            console.log(arr1);
         }
 
         forestDOM += `<br><p class="body-text">Non-Native</p>`;
@@ -1620,12 +1618,6 @@ forestBtn.addEventListener("click", function () {
         for (let j=0; j<arr2.length; j++) { 
             forestDOM += `<div class="tiny-box" style="background-color:black"></div>`;
         }
-
-
-
-
-
-
         forestDOM += `</div>`;
 
     }
@@ -1633,6 +1625,7 @@ forestBtn.addEventListener("click", function () {
     createForestKey(allNativeArray, allNonNativeArray);
     
 
+    
 
 
 
@@ -1673,7 +1666,7 @@ forestBtn.addEventListener("click", function () {
 //#region A TREE FUNCTION 
 
 
-aTreeBtn.addEventListener("click", function() {
+speciesViewBtn.addEventListener("click", function() {
 
     keyFlex.innerHTML = "";
 
@@ -1788,6 +1781,7 @@ aboutBtn.addEventListener("click", function() {
     
 
 });
+
 
 
 
