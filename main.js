@@ -1554,6 +1554,8 @@ nonNativeFilterBtn.addEventListener("mouseover", function() {
 
 // #region MAIN FILTERS  --------------------------------------
 
+// Taken from 
+// https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array/6274381#6274381
 function shuffleArray(arr) {
     var j, x, index;
     for (index = arr.length - 1; index > 0; index--) {
@@ -1587,9 +1589,6 @@ urbanViewBtn.addEventListener("click", function () {
 
 
     let urbanContainer = document.createElement('div');
-    // forestDOM += urbanContainer.outerHTML;
-
-
     urbanContainer.id= "city-grid";
 
     console.log(urbanContainer);
@@ -1603,10 +1602,17 @@ urbanViewBtn.addEventListener("click", function () {
         let testWidth = 0.9*window.innerWidth;
         let testHeight = 0.7*window.innerHeight;
 
+        // var marginSize = .4;
+        // var squareSize = testWidth/50 - 2*marginSize;
 
         var squareSize = testWidth/50;
+
+        // var xBoxes = Math.floor(testWidth/(squareSize + 2*marginSize));
+        // var yBoxes = Math.floor(testHeight/(squareSize + 2*marginSize));
+        
         var xBoxes = Math.floor(testWidth/squareSize);
         var yBoxes = Math.floor(testWidth/squareSize);
+
         var totalBoxes = xBoxes*yBoxes;
 
         console.log(squareSize);
@@ -1620,8 +1626,13 @@ urbanViewBtn.addEventListener("click", function () {
         var urbanContWidth = xBoxes*squareSize;
         var urbanContHeight = yBoxes*squareSize;
 
+        // var urbanContWidth = xBoxes*(squareSize + 2*marginSize);
+        // var urbanContHeight = yBoxes*(squareSize + 2*marginSize);
+
         urbanContainer.style.width = urbanContWidth + "px";
         urbanContainer.style.height = urbanContHeight + "px";
+
+        
 
 
         let greyBoxesArray = [];
@@ -1632,34 +1643,49 @@ urbanViewBtn.addEventListener("click", function () {
 
         console.log(greyBoxNumber, urbanTreesNumber);
 
-        for (let g=0; g<greyBoxNumber; g++) {
-        let greyBox = document.createElement('div');
-        greyBox.style.backgroundColor = `#888888`;
-        greyBox.style.width = squareSize + 'px';
-        greyBox.style.height = squareSize + 'px';
 
-        greyBoxesArray.push(greyBox);
-        }
 
         
-
+        // CREATING TREES DIVS FOR URBAN  VIEW
         for (let i=0; i<arr.length; i++) {
             // Percentage of species from dataset
             let pValue = (arr[i].length/allTreesTotalNumber)*100;
 
             for (let u=0; u< Math.floor((pValue*urbanTreesNumber)/100); u++) {
                 let urbanTree = document.createElement('div');
+                urbanTree.classList.add("urbanTree");
                 urbanTree.style.width = squareSize + "px";
                 urbanTree.style.height = squareSize + "px";
                 urbanTree.style.backgroundColor = `${arr[i][i].bg}`;
+                urbanTree.setAttribute('data-common-name', arr[i][i].spc_common_name);
+                urbanTree.setAttribute('data-latin-name', arr[i][i].spc_latin);
+                urbanTree.setAttribute('data-percentage', pValue);
 
                 urbanTreesArray.push(urbanTree);
 
             };
         };
 
+        var remainingFillBoxes = urbanTreesNumber - urbanTreesArray.length;
+        console.log(remainingFillBoxes);
+        greyBoxNumber += remainingFillBoxes;
+
+        // CREATING GREY CONCRETE BOXES FOR URBAN VIEW
+        for (let g=0; g<greyBoxNumber; g++) {
+            let greyBox = document.createElement('div');
+            greyBox.classList.add("greyBox");
+            // greyBox.style.backgroundColor = `#818a81`;
+            greyBox.style.width = squareSize + 'px';
+            greyBox.style.height = squareSize + 'px';
+    
+            greyBoxesArray.push(greyBox);
+        }
+
+
         console.log(greyBoxesArray);
         console.log(urbanTreesArray);
+
+        
 
         urbanTreesArray.push(...greyBoxesArray);
         shuffleArray(urbanTreesArray);
@@ -1683,6 +1709,31 @@ urbanViewBtn.addEventListener("click", function () {
 
           urbanTreesArray.forEach((div) => {
             urbanContainer.appendChild(div);
+
+            div.addEventListener('click', function(e) {
+                const treeSpecies = div.getAttribute('data-common-name');
+                const treeDivs = document.querySelectorAll(`div[data-common-name="${treeSpecies}"]`);
+
+                let urbanInfo = document.createElement('div');
+                urbanInfo.id = "urbanInfoDiv";
+                urbanInfo.innerHTML = "Beedobeedo";
+                urbanInfo.style.top = e.clientY + "px";
+                urbanInfo.style.left = e.clientX + "px";
+
+
+                
+
+            
+                treeDivs.forEach((treeDiv) => {
+                    treeDiv.classList.add("urbanBlackOutline");
+                //   treeDiv.style.outline = '2px solid black';
+                //   treeDiv.style.outlineOffset = '-4px'
+                });
+
+                
+
+              });
+
         });
 
 

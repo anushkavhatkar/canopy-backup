@@ -1,4 +1,4 @@
-/* #region ------------------------------------ ROOT VARIABLES  ------------------------------------ */
+/* #region ---------------- ROOT VARIABLES  ---------------- */
 
 :root {
     --black: #000000; 
@@ -135,7 +135,7 @@
 /* #endregion */
 
 
-/* #region ------------------------------------ SITWIDE BASICS ------------------------------------ */
+/* #region ---------------- SITWIDE BASICS ---------------- */
 
 body {
     width: 90vw;
@@ -147,7 +147,7 @@ body {
 /* #endregion */
 
 
-/* #region ------------------------------------ TYPOGRAPHY ------------------------------------  */
+/* #region ---------------- TYPOGRAPHY ----------------  */
 
 
 
@@ -220,7 +220,7 @@ span {
 /* #endregion */
 
 
-/* #region ------------------------------------ GENERAL STYLES ------------------------------------ */
+/* #region ---------------- GENERAL STYLES ---------------- */
 
 .site-nav { 
     margin: 2.5em 0em;
@@ -279,7 +279,7 @@ span {
 /* #endregion */
 
 
-/* #region --------------------------------- FILTER BUTTONS AND HOVER ---------------------------------*/
+/* #region ------------- FILTER BUTTONS AND HOVER -------------*/
 
 .info-btn { 
     padding: .35em .75em;
@@ -344,7 +344,7 @@ span {
 
 /* #endregion */
 
-/* #region ------------------------------------ VISUALISATION STYLING ------------------------------------ */
+/* #region ---------------- VISUALISATION STYLING ---------------- */
 
 /* #container { 
     display: flex;
@@ -352,18 +352,8 @@ span {
     flex-wrap: wrap;
     margin-top: 1em;
 
-}
-
-.viz-container { 
-    display: flex;
-    flex-direction: column;
-    width: 44.5vw;
-    margin-top: 2em;
-    margin-bottom: 2em;
-    margin-right: .45em;
-    background-color: var(--light-white);
-
 } */
+
 
 #container { 
     display: grid;
@@ -456,6 +446,40 @@ span {
     flex-direction: row;
     flex-wrap: wrap;
 }
+
+.greyBox {
+    background-color: #a5a9a5;
+    box-sizing: border-box;
+    padding: .5em;
+}
+
+.urbanBlackOutline {
+    outline: .1em black solid;
+    outline-offset: -1px;
+    transition: outline .1s ease-out ;
+}
+
+.urbanTree {
+    box-sizing: border-box;
+    padding: .5em;
+}
+
+.urbanTree:hover {
+    cursor: zoom-in;
+}
+
+.urbanInfoDiv { 
+    color:white;
+    position: absolute;
+    z-index: 9;
+    font-family: neue-haas-grotesk-text, sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    letter-spacing: .02em;
+    font-size: var(--body-text-size);
+}
+
+
 
 /* #endregion */
 
