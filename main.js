@@ -1579,10 +1579,10 @@ urbanViewBtn.addEventListener("click", function () {
     keyFlex.innerHTML = 
     `
     
-    <div id="key-text">Now Contextualizing ${allTreesTotalNumber} New York City trees</div>
+    <div id="key-text">Now Contextualizing ${allTreesTotalNumber} New York City Street Trees</div>
         
         <div id="key">
-            By Percentage
+            25% Tree Canopy, 75% Other Land
         </div>
     
     `;
