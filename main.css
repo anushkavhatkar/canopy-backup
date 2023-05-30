@@ -291,6 +291,7 @@ span {
 
 .filter-bar {
     height: 2em;
+    z-index: 9;
 }
 
 .filter-btn { 
@@ -445,6 +446,8 @@ span {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    /* background-color: #a5a9a5; */
+    background-color: #dde3dd;
 }
 
 .greyBox {
@@ -454,9 +457,11 @@ span {
 }
 
 .urbanBlackOutline {
-    outline: .1em black solid;
+    /* outline: .1em black solid; */
+    border-radius: .4em;
+    /* border: .05em black solid; */
     outline-offset: -1px;
-    transition: outline .1s ease-out ;
+    transition: border-radius .2s ease-in-out ;
 }
 
 .urbanTree {
@@ -470,13 +475,17 @@ span {
 
 .urbanInfoDiv { 
     color:white;
+    background-color: #a5a9a5;
     position: absolute;
-    z-index: 9;
+    z-index: 2;
     font-family: neue-haas-grotesk-text, sans-serif;
     font-weight: 500;
     font-style: normal;
     letter-spacing: .02em;
     font-size: var(--body-text-size);
+    padding: .5em;
+    border-radius: .15em;
+    border: .05em black solid;
 }
 
 

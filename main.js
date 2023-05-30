@@ -1154,7 +1154,7 @@ fetch(url)
 
 // #region MATH FUNCTIONS ------------------------------------  
 
-//#region ------------CALCULATING INTERNAL ARRAY LENGTHS (TOTAL NO. OF TREES) ---------------------
+//#region CALCULATING INTERNAL ARRAY LENGTHS (TOTAL NO. OF TREES) ---------------------
 
 let allNativeTreesNumber = 0;
 let allNonNativeTreesNumber = 0;
@@ -1210,7 +1210,8 @@ console.log(allTreesTotalNumber);
 //#endregion
 
 
-// Taken from MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round
+// Taken from MDN
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round
 function roundToTwo(num) {
     return +(Math.round(num + "e+2")  + "e-2");
 }
@@ -1650,6 +1651,7 @@ urbanViewBtn.addEventListener("click", function () {
         for (let i=0; i<arr.length; i++) {
             // Percentage of species from dataset
             let pValue = (arr[i].length/allTreesTotalNumber)*100;
+            let pValueRounded = roundToTwo(pValue);
 
             for (let u=0; u< Math.floor((pValue*urbanTreesNumber)/100); u++) {
                 let urbanTree = document.createElement('div');
@@ -1659,7 +1661,7 @@ urbanViewBtn.addEventListener("click", function () {
                 urbanTree.style.backgroundColor = `${arr[i][i].bg}`;
                 urbanTree.setAttribute('data-common-name', arr[i][i].spc_common_name);
                 urbanTree.setAttribute('data-latin-name', arr[i][i].spc_latin);
-                urbanTree.setAttribute('data-percentage', pValue);
+                urbanTree.setAttribute('data-percentage', pValueRounded);
 
                 urbanTreesArray.push(urbanTree);
 
@@ -1715,10 +1717,12 @@ urbanViewBtn.addEventListener("click", function () {
                 const treeDivs = document.querySelectorAll(`div[data-common-name="${treeSpecies}"]`);
 
                 let urbanInfo = document.createElement('div');
-                urbanInfo.id = "urbanInfoDiv";
-                urbanInfo.innerHTML = "Beedobeedo";
-                urbanInfo.style.top = e.clientY + "px";
-                urbanInfo.style.left = e.clientX + "px";
+                mainContainer.appendChild(urbanInfo);
+                urbanInfo.classList.add("urbanInfoDiv");
+                urbanInfo.innerHTML = `${div.dataset.commonName}. <br>${div.dataset.latinName}. <br>${div.dataset.percentage}%`;
+                urbanInfo.style.top = e.pageY + "px";
+                urbanInfo.style.left = e.pageX + "px";
+
 
 
                 
@@ -1726,8 +1730,6 @@ urbanViewBtn.addEventListener("click", function () {
             
                 treeDivs.forEach((treeDiv) => {
                     treeDiv.classList.add("urbanBlackOutline");
-                //   treeDiv.style.outline = '2px solid black';
-                //   treeDiv.style.outlineOffset = '-4px'
                 });
 
                 
