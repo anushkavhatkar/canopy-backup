@@ -33,6 +33,8 @@ let keyText = document.querySelector('#key-text');
 
 let keyFlex = document.querySelector(".key-flex");
 
+let key = document.querySelector("#key");
+
 let internalImagePath = "../canopy-backup/assets/";
 
 let aboutBtn = document.querySelector('#about');
@@ -1256,6 +1258,8 @@ function revealInfoBlocks () {
 
     keyText.innerHTML = `Now Visualizing ${allTreesTotalNumber} New York City trees`;
 
+    key.innerHTML = `<div class="tiny-box" style:"background-color:black;"></div> 1 square = 100 trees`;
+
 
 
 function createTheDivs(arr) { 
@@ -1568,6 +1572,7 @@ function shuffleArray(arr) {
     return arr;
 }
 
+// URBAN VIEW
 
 urbanViewBtn.addEventListener("click", function () {
 
@@ -1579,11 +1584,10 @@ urbanViewBtn.addEventListener("click", function () {
     keyFlex.innerHTML = 
     `
     
-    <div id="key-text">Now Contextualizing ${allTreesTotalNumber} New York City Street Trees
-    <br>Street Trees are [6%] of its [25%] Tree Canopy. [75%] is Other Land</div>
+    <div id="key-text">Now Contextualizing ${allTreesTotalNumber} New York City Street Trees</div>
         
         <div id="key">
-            Clear
+            25% Tree Canopy. 75% Other Land.
         </div>
     
     `;
@@ -1639,9 +1643,11 @@ urbanViewBtn.addEventListener("click", function () {
 
         let greyBoxesArray = [];
         let urbanTreesArray = [];
+        let otherCanopyArray = [];
 
         var greyBoxNumber = Math.floor(0.75*totalBoxes);
         var urbanTreesNumber = Math.floor(0.25*totalBoxes);
+        // var otherCanopyNumber = Math.floor(0.19*totalBoxes);
 
         console.log(greyBoxNumber, urbanTreesNumber);
 
@@ -1685,6 +1691,18 @@ urbanViewBtn.addEventListener("click", function () {
             greyBoxesArray.push(greyBox);
         }
 
+        // CREATING QUESTION MARK OTHER TREE CANOPY 
+        // for (let q=0; q<otherCanopyNumber; q++) {
+        //     let otherCanopyBox = document.createElement('div');
+        //     otherCanopyBox.classList.add("greyBox");
+        //     otherCanopyBox.innerText = "?";
+
+        //     otherCanopyBox.style.width = squareSize + 'px';
+        //     otherCanopyBox.style.height = squareSize + 'px';
+
+        //     otherCanopyArray.push(otherCanopyBox);
+        // }
+
 
         console.log(greyBoxesArray);
         console.log(urbanTreesArray);
@@ -1692,24 +1710,12 @@ urbanViewBtn.addEventListener("click", function () {
         
 
         urbanTreesArray.push(...greyBoxesArray);
+        // urbanTreesArray.push(...otherCanopyArray);
         shuffleArray(urbanTreesArray);
         
 
 
-        // sample black boxes creation
-        // for (var i = 0; i < xBoxes * yBoxes; i++) {
 
-            
-        //     var box = document.createElement('div');
-        //     box.className = 'city-box';
-        //     box.style.backgroundColor = 'black';
-        //     box.style.width = squareSize + 'px';
-        //     box.style.height = squareSize + 'px';
-        //     urbanContainer.appendChild(box);
-        //     divArray.forEach((div) => {
-        //         targetElement.appendChild(div);
-        //       });
-        // }
 
           urbanTreesArray.forEach((div) => {
             urbanContainer.appendChild(div);
@@ -1781,30 +1787,11 @@ mainContainer.appendChild(urbanContainer);
 
 speciesViewBtn.addEventListener("click", function() {
 
-    keyFlex.innerHTML = "";
 
-    keyFlex.innerHTML = 
-    `
-    
-            
-        <div id="key-text"></div>
-        
-        <div class="body-text sub-filters-flex">
-            <div id="percentage-filter" class="sub-filter">view all </div>
-            <div id="native-filter" class="sub-filter">native </div> 
-            <div id="non-native-filter" class="sub-filter">non-native </div>
-            <!-- <div id="compare-filter" class="sub-filter">compare </div> -->
-        </div>
-
-
-        
-
-        <div>
-            1 square = 100 trees
-        </div>
-    `;
 
     keyText.innerHTML = `Now Visualizing ${allTreesTotalNumber} New York City trees`;
+
+    key.innerHTML = `1 square = 100 trees`;
 
     treesDOM = "";
     
@@ -1928,6 +1915,21 @@ aboutBtn.addEventListener("click", function() {
 
 //#region TRIALS
 
+
+        // sample black boxes creation
+        // for (var i = 0; i < xBoxes * yBoxes; i++) {
+
+            
+        //     var box = document.createElement('div');
+        //     box.className = 'city-box';
+        //     box.style.backgroundColor = 'black';
+        //     box.style.width = squareSize + 'px';
+        //     box.style.height = squareSize + 'px';
+        //     urbanContainer.appendChild(box);
+        //     divArray.forEach((div) => {
+        //         targetElement.appendChild(div);
+        //       });
+        // }
 
 //#region choppy but working accordion
 // for (let i = 0; i < treeVisualisations.length; i++) {
