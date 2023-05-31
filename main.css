@@ -6,6 +6,7 @@
     --light-white: #f6f6f6; 
     --middle-grey: #888888;
     --light-grey: #D0D0D0;
+    --cement-grey: #a5a9a5;
     
     /* --native-one: #01AF5A;
     --native-two: #C9E518;
@@ -474,8 +475,10 @@ span {
 }
 
 .urbanInfoDiv { 
-    color:white;
-    background-color: #a5a9a5;
+    color:black;
+    /* background-color: var(--american-linden); */
+
+
     position: absolute;
     z-index: 2;
     font-family: neue-haas-grotesk-text, sans-serif;

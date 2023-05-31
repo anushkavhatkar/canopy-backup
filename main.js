@@ -1579,10 +1579,11 @@ urbanViewBtn.addEventListener("click", function () {
     keyFlex.innerHTML = 
     `
     
-    <div id="key-text">Now Contextualizing ${allTreesTotalNumber} New York City Street Trees</div>
+    <div id="key-text">Now Contextualizing ${allTreesTotalNumber} New York City Street Trees
+    <br>Street Trees are [6%] of its [25%] Tree Canopy. [75%] is Other Land</div>
         
         <div id="key">
-            25% Tree Canopy, 75% Other Land
+            Clear
         </div>
     
     `;
@@ -1662,6 +1663,7 @@ urbanViewBtn.addEventListener("click", function () {
                 urbanTree.setAttribute('data-common-name', arr[i][i].spc_common_name);
                 urbanTree.setAttribute('data-latin-name', arr[i][i].spc_latin);
                 urbanTree.setAttribute('data-percentage', pValueRounded);
+                urbanTree.setAttribute('data-bg', arr[i][i].bg);
 
                 urbanTreesArray.push(urbanTree);
 
@@ -1718,8 +1720,13 @@ urbanViewBtn.addEventListener("click", function () {
 
                 let urbanInfo = document.createElement('div');
                 mainContainer.appendChild(urbanInfo);
+                urbanInfo.style.backgroundColor = `${div.dataset.bg}`;
                 urbanInfo.classList.add("urbanInfoDiv");
-                urbanInfo.innerHTML = `${div.dataset.commonName}. <br>${div.dataset.latinName}. <br>${div.dataset.percentage}%`;
+                console.log(urbanInfo.backgroundColor);
+                // urbanInfo.innerHTML = `${div.dataset.commonName}. <br>${div.dataset.latinName}. <br>${div.dataset.percentage}%`;
+
+                urbanInfo.innerHTML = `${div.dataset.commonName} — ${div.dataset.percentage}%`;
+
                 urbanInfo.style.top = e.pageY + "px";
                 urbanInfo.style.left = e.pageX + "px";
 
