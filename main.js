@@ -220,50 +220,7 @@ fetch(url)
 
     json.forEach(function (tree) { 
 
-        delete tree.tree_id;
-        delete tree.block_id;
-        delete tree.created_at;
-        delete tree.tree_dbh;
-        delete tree.stump_diam;
-        delete tree.curb_loc;
-        delete tree.status;
-        delete tree.health;
-        delete tree.steward;
-        delete tree.guards;
-        delete tree.sidewalk;
-        delete tree.user_type;
-        delete tree.problems;
-        delete tree.created_at;
-        delete tree.root_stone;
-        delete tree.root_grate;
-        delete tree.root_other;
-        delete tree.trunk_wire;
-        delete tree.trnk_light;
-        delete tree.trnk_other;
-        delete tree.brch_light;
-        delete tree.brch_shoe;
-        delete tree.brch_other;
-        delete tree.address;
-        delete tree.postcode;
-        delete tree.cb_num;
-        delete tree.borocode;
-        delete tree.cncldist;
-        delete tree.st_assem;
-        delete tree.st_senate;
-        delete tree.nta;
-        delete tree.boro_ct;
-        delete tree.created_at;
-        delete tree.state;
-        delete tree.latitude;
-        delete tree.longitude;
-        delete tree.x_sp;
-        delete tree.y_sp;
-        delete tree.council_district;
-        delete tree.census_tract;
-        delete tree.bin;
-        delete tree.bbl;
-        delete tree.zipcode;
-        delete tree.nta_name;
+
 
         if (tree.spc_common == "pin oak") {
             tree.spc_common = "pin-oak";
@@ -1270,10 +1227,11 @@ function createTheDivs(arr) {
             // INFO 
             treesDOM += `<div class="info-block">`
             treesDOM += `<div class="info-flex">`;
+            treesDOM += `<div class="info-images-flex">`;
             treesDOM += `<div class="info-img" style="background-image: url('${arr[i][i].imageOne}'); background-size: cover;"></div>`;
             treesDOM += `<div class="info-img" style="background-image: url('${arr[i][i].imageTwo}'); background-size: cover;"></div>`;
 
-
+            treesDOM += `</div>`
             treesDOM += `<div class="info-container body-text">`
             treesDOM += `<p id="content">
                         <span>Common Name</span>
@@ -1385,9 +1343,11 @@ percentageFilterBtn.addEventListener("click", function() {
                 // INFO 
                 nativeTreesDOM += `<div class="info-block">`
                 nativeTreesDOM += `<div class="info-flex">`;
+                nativeTreesDOM += `<div class="info-images-flex">`;
                 nativeTreesDOM += `<div class="info-img" style="background-image: url('${arr[k][k].imageOne}'); background-size: cover;"></div>`;
                 nativeTreesDOM += `<div class="info-img" style="background-image: url('${arr[k][k].imageTwo}'); background-size: cover;"></div>`;
 
+                nativeTreesDOM += `</div>`;
                 nativeTreesDOM += `<div class="info-container body-text" data-height="auto">`
                 nativeTreesDOM += `<p id="content">
                         <span>Common Name</span>
@@ -1462,9 +1422,11 @@ percentageFilterBtn.addEventListener("click", function() {
                 // INFO 
                 nonNativeTreesDOM += `<div class="info-block">`
                 nonNativeTreesDOM += `<div class="info-flex">`;
+                nonNativeTreesDOM += `<div class="info-images-flex">`;
                 nonNativeTreesDOM += `<div class="info-img" style="background-image: url('${arr[k][k].imageOne}'); background-size: cover;"></div>`;
                 nonNativeTreesDOM += `<div class="info-img" style="background-image: url('${arr[k][k].imageTwo}'); background-size: cover;"></div>`;
 
+                nonNativeTreesDOM += `</div>`;
                 nonNativeTreesDOM += `<div class="info-container body-text" data-height="auto">`
                 nonNativeTreesDOM += `<p id="content">
                         <span>Common Name</span>
