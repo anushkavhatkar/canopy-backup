@@ -44,30 +44,125 @@ function randomColor(arr){
   return arr[Math.floor(Math.random()*arr.length)]
 }
 
+// function size(){
+//     var container = document.getElementById('container');
+//     container.innerHTML = '';
+//     var x = Math.floor(window.innerWidth/20);
+//   var y = Math.floor(window.innerHeight/20);
+//   for(var i = 0; i < x*y; i++) {
+//     var box = document.createElement('div');
+//     box.className = 'box';
+//     container.appendChild(box);
+    
+//     box.style.padding = window.innerWidth/50 + "px";
+//     const randColor = randomColor(treeColorsArray);
+//     box.style.backgroundColor = randColor;
+//     // box.style.height = window.innerHeight/20 + "px";
+//     // box.style.width = window.innerHeight/20 + "px";
+    
+//     // let hoverText = document.querySelector('#hover-native');
+//     let squareDivs = document.querySelectorAll('.box');
+//   // console.log(typeof(squareDivs));
+//   // console.log(squareDivs);
+
+//   // Figured this code out with help from Prof Patrick Morrissey
+//   hoverText.innerHTML = "Native";
+    
+
+//     box.addEventListener("mouseover", () => {
+//         if (nativeColorsArray.includes(randColor)) {
+//             console.log("test: true");
+//             hoverText.innerHTML = " ";
+//             hoverText.innerHTML = "Native";
+//         } else if (nonNativeColorsArray.includes(randColor)) {
+//             hoverText.innerHTML = "";
+//             hoverText.innerHTML = "Non-Native";
+//         }
+//     });
+    
+    
+    
+//   }
+
+//   document.addEventListener("mousemove", handleMousePos);
+
+//   function handleMousePos(event) {
+//     var mouseX = event.clientX;
+//     var mouseY = event.clientY; 
+
+//     hoverText.style.top = mouseY + "px";
+//     hoverText.style.left = mouseX + "px";
+//   }
+
+
+// };
+
 function size(){
-    var container = document.getElementById('container');
+  var container = document.getElementById('container');
   container.innerHTML = '';
-    var x = Math.floor(window.innerWidth/20);
-  var y = Math.floor(window.innerHeight/20);
-  for(var i = 0; i < x*y; i++) {
+  
+  // var x = Math.floor(window.innerWidth/20);
+  // var y = Math.floor(window.innerHeight/20);
+  
+  
+  //NEW
+  
+  var squareSize = Math.floor(window.innerWidth / 30);
+  var x = Math.floor(window.innerWidth / squareSize);
+  var y = Math.floor(window.innerHeight / squareSize);
+
+  var containerWidth = x * squareSize;
+  var containerHeight = y * squareSize;
+
+  container.style.width = containerWidth + 'px';
+  container.style.height = containerHeight + 'px';
+    container.style.minHeight = 1.5 * window.innerHeight + 'px'; // Set minimum height
+
+  
+  
+  
+  for(var i = 0; i < x*y; i++){
+    
+    //OLD
+//     var box = document.createElement('div');
+//     box.className = 'box';
+//     container.appendChild(box);
+    
+//     box.style.padding = window.innerWidth/50 + "px";
+    
     var box = document.createElement('div');
     box.className = 'box';
+    box.style.width = squareSize + 'px';
+    box.style.height = squareSize + 'px';
     container.appendChild(box);
     
-    box.style.padding = window.innerWidth/50 + "px";
+    
+    
+    
+// HOVER TEXT PART
+    
+    
     const randColor = randomColor(treeColorsArray);
     box.style.backgroundColor = randColor;
-    // box.style.height = window.innerHeight/20 + "px";
-    // box.style.width = window.innerHeight/20 + "px";
-    
-    // let hoverText = document.querySelector('#hover-native');
-    let squareDivs = document.querySelectorAll('.box');
-  // console.log(typeof(squareDivs));
-  // console.log(squareDivs);
 
-  // Figured this code out with help from Prof Patrick Morrissey
+
+    
+
+let hoverText = document.querySelector('#hover-native');
+let squareDivs = document.querySelectorAll('.box');
+console.log(typeof(squareDivs));
+console.log(squareDivs);
+
   hoverText.innerHTML = "Native";
     
+    document.addEventListener("mousemove", function(e){
+	let mouseX = e.clientX;
+	let mouseY = e.clientY
+
+  hoverText.style.top = e.clientY + "px";
+  hoverText.style.left = e.clientX + "px";
+  
+});
 
     box.addEventListener("mouseover", () => {
         if (nativeColorsArray.includes(randColor)) {
@@ -81,10 +176,7 @@ function size(){
     });
     
     
-    
   }
-
-  document.addEventListener("mousemove", handleMousePos);
 
   function handleMousePos(event) {
     var mouseX = event.clientX;
@@ -93,9 +185,8 @@ function size(){
     hoverText.style.top = mouseY + "px";
     hoverText.style.left = mouseX + "px";
   }
+}
 
-
-};
 
 
 window.addEventListener('resize',function(){
